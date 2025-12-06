@@ -1,0 +1,4 @@
+# LZ78 File Compressor - Requirements
+# Python 3.10 or higher required
+
+PyQt5>=5.15.9
