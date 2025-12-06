@@ -100,8 +100,18 @@ class LZ78Compressor:
             Dictionary with statistics
         """
         original_size = len(original_text.encode('utf-8'))
-        compressed_size = len(json.dumps(self.compressed_data).encode('utf-8'))
-        compression_ratio = (1 - compressed_size / original_size) * 100 if original_size > 0 else 0
+        
+        # Calculate REAL compressed size including dictionary and metadata
+        full_data = {
+            'original_filename': 'temp.txt',
+            'compressed_data': self.compressed_data,
+            'dictionary': self.dictionary,
+            'version': '1.0'
+        }
+        compressed_size = len(json.dumps(full_data, ensure_ascii=False, separators=(',', ':')).encode('utf-8'))
+        
+        # Calculate compression ratio (negative means expansion)
+        compression_ratio = ((original_size - compressed_size) / original_size * 100) if original_size > 0 else 0
         
         return {
             'original_size': original_size,

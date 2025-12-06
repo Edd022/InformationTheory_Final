@@ -78,7 +78,7 @@ class FileHandler:
         
         try:
             with open(file_path, 'w', encoding='utf-8') as f:
-                json.dump(data, f, ensure_ascii=False, indent=2)
+                json.dump(data, f, ensure_ascii=False, separators=(',', ':'))
         except Exception as e:
             raise ValueError(f"Error saving compressed file: {str(e)}")
     
