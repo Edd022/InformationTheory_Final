@@ -3,7 +3,6 @@ LZ78 Compression Algorithm Implementation
 """
 
 from typing import List, Tuple, Dict
-import json
 
 
 class LZ78Compressor:
@@ -89,26 +88,27 @@ class LZ78Compressor:
         """Return the compressed data."""
         return self.compressed_data
     
-    def get_statistics(self, original_text: str) -> Dict[str, any]:
+    def get_statistics(self, original_text: str, original_filename: str = 'temp.txt') -> Dict[str, any]:
         """
-        Calculate compression statistics.
+        Calculate compression statistics using binary format.
         
         Args:
             original_text: Original uncompressed text
+            original_filename: Name of the original file (for accurate size calculation)
             
         Returns:
             Dictionary with statistics
         """
+        from .file_handler_binary import FileHandlerBinary
+        
         original_size = len(original_text.encode('utf-8'))
         
-        # Calculate REAL compressed size including dictionary and metadata
-        full_data = {
-            'original_filename': 'temp.txt',
-            'compressed_data': self.compressed_data,
-            'dictionary': self.dictionary,
-            'version': '1.0'
-        }
-        compressed_size = len(json.dumps(full_data, ensure_ascii=False, separators=(',', ':')).encode('utf-8'))
+        # Calculate REAL compressed size using binary format
+        compressed_size = FileHandlerBinary.get_compressed_size(
+            self.compressed_data,
+            self.dictionary,
+            original_filename
+        )
         
         # Calculate compression ratio (negative means expansion)
         compression_ratio = ((original_size - compressed_size) / original_size * 100) if original_size > 0 else 0

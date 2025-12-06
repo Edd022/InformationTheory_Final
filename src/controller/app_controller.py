@@ -6,7 +6,7 @@ from PyQt5.QtWidgets import QFileDialog
 from typing import Optional
 from pathlib import Path
 
-from ..model import LZ78Compressor, FileHandler
+from ..model import LZ78Compressor, FileHandler, FileHandlerBinary
 
 
 class AppController:
@@ -19,6 +19,7 @@ class AppController:
         self.view = view
         self.compressor = LZ78Compressor()
         self.file_handler = FileHandler()
+        self.file_handler_binary = FileHandlerBinary()
         
         # Current file data
         self.current_file_path: Optional[str] = None
@@ -95,7 +96,7 @@ class AppController:
         try:
             # Load compressed file
             self.compressed_data, self.dictionary, original_filename = \
-                self.file_handler.load_compressed_file(file_path)
+                self.file_handler_binary.load_compressed_file(file_path)
             
             self.current_file_path = file_path
             
@@ -154,7 +155,8 @@ class AppController:
             self.view.update_dictionary_display(self.dictionary)
             
             # Calculate and display statistics
-            stats = self.compressor.get_statistics(self.current_text)
+            filename = Path(self.current_file_path).name if self.current_file_path else 'temp.txt'
+            stats = self.compressor.get_statistics(self.current_text, filename)
             self.view.update_statistics(stats)
             
             # Enable save button
@@ -189,7 +191,7 @@ class AppController:
         
         try:
             original_filename = Path(self.current_file_path).name if self.current_file_path else "unknown.txt"
-            self.file_handler.save_compressed_file(
+            self.file_handler_binary.save_compressed_file(
                 file_path,
                 self.compressed_data,
                 self.dictionary,
@@ -221,7 +223,8 @@ class AppController:
             self.view.btn_save_decompressed.setEnabled(True)
             
             # Update statistics
-            stats = self.compressor.get_statistics(self.decompressed_text)
+            filename = Path(self.current_file_path).stem + '.txt' if self.current_file_path else 'temp.txt'
+            stats = self.compressor.get_statistics(self.decompressed_text, filename)
             self.view.update_statistics(stats)
             
             self.view.show_success("¡Archivo descomprimido exitosamente!")
