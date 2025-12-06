@@ -179,15 +179,22 @@ InformationTheory_Final/
 │   │   ├── file_handler_binary.py             # Handler v1 (LZ78 solo)
 │   │   ├── file_handler_binary_huffman.py     # Handler v2 (LZ78+Huffman)
 │   │   ├── file_handler.py                    # Handler JSON (legacy)
-│   │   └── huffman/                           # Biblioteca Huffman
+│   │   ├── __init__.py
+│   │   └── Huffman/                           # Biblioteca Huffman
 │   │       ├── encoder/
 │   │       │   ├── encoder.py                 # Codificación Huffman
-│   │       │   └── HuffmanNode.py             # Estructura del árbol
-│   │       └── decoder/
-│   │           └── decoder.py                 # Decodificación Huffman
+│   │       │   ├── HuffmanNode.py             # Estructura del árbol
+│   │       │   └── __init__.py
+│   │       ├── decoder/
+│   │       │   ├── decoder.py                 # Decodificación Huffman
+│   │       │   └── __init__.py
+│   │       ├── file/                          # Utilidades de archivo
+│   │       ├── metrics/                       # Métricas Huffman
+│   │       └── __init__.py
 │   ├── view/
 │   │   ├── main_window.py                     # Interfaz PyQt5 (español)
-│   │   └── components/                        # Componentes UI reutilizables
+│   │   ├── components/
+│   │   └── __init__.py
 │   ├── controller/
 │   │   └── app_controller.py                  # Controlador MVC
 │   └── utils/
@@ -201,6 +208,7 @@ InformationTheory_Final/
 │       ├── system_logs.txt                    # 2MB logs (86% redundancia)
 │       ├── sales_dataset.csv                  # 2MB CSV (61% redundancia)
 │       ├── test_very_large_data.txt           # 500KB texto (99% redundancia)
+│       ├── test_very_large_data.lz78          # Archivo comprimido de ejemplo
 │       ├── large_code.py                      # 50KB código Python
 │       ├── example_code.py                    # 6.5KB código Python
 │       ├── config_example.json                # 1.4KB configuración
@@ -222,7 +230,7 @@ El proyecto implementa el patrón **MVC (Model-View-Controller)**:
 - **lz78_compressor.py**: Implementación del algoritmo LZ78 clásico
 - **lz78_huffman_compressor.py**: Implementación híbrida LZ78 + Huffman (activa)
 - **file_handler_binary_huffman.py**: Manejo de archivos en formato binario optimizado
-- **huffman/**: Biblioteca de codificación/decodificación Huffman
+- **Huffman/**: Biblioteca de codificación/decodificación Huffman (incluye encoder, decoder, file, metrics)
 
 ### View (Vista)
 
