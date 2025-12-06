@@ -421,7 +421,7 @@ Repositorio: [InformationTheory_Final](https://github.com/Edd022/InformationTheo
 
 ## Licencia
 
-Este proyecto está bajo la Licencia MIT. Ver archivo [LICENSE](LICENSE) para más detalles.
+Este proyecto está bajo la Licencia GNU General Public License v3.0. Ver archivo [LICENSE](LICENSE) para más detalles.
 
 ---
 
