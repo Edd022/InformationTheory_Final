@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Compresión LZ78 + Huffman</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+        
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .algorithm-section {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .algorithm-box {
+            flex: 1;
+            padding: 1rem;
+            border: 2px solid #333;
+            border-radius: 8px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .stat-item {
+            background-color: #f9f9f9;
+            padding: 1rem;
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+        
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        button:hover {
+            background-color: #45a049;
+        }
+        
+        .info-box {
+            background-color: #e7f3ff;
+            border-left: 4px solid #2196F3;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .warning-box {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Sistema de Compresión LZ78 + Huffman</h1>
+        <p>Universidad Distrital Francisco José de Caldas - Teoría de la Información</p>
+    </header>
+    
+    <main>
+        <div class="card">
+            <h2>Descripción del Proyecto</h2>
+            <p>
+                Este proyecto implementa un sistema de compresión híbrido que combina el algoritmo 
+                LZ78 (compresión basada en diccionario) con codificación Huffman (codificación óptima).
+            </p>
+            
+            <div class="info-box">
+                <strong>Característica Principal:</strong> El algoritmo logra tasas de compresión del 
+                80-90% en archivos de texto con alta redundancia.
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>Algoritmos Implementados</h2>
+            <div class="algorithm-section">
+                <div class="algorithm-box">
+                    <h3>LZ78</h3>
+                    <p>Compresión basada en diccionario adaptativo</p>
+                    <ul>
+                        <li>Construye diccionario dinámicamente</li>
+                        <li>Identifica patrones repetidos</li>
+                        <li>Genera tuplas (índice, carácter)</li>
+                    </ul>
+                </div>
+                
+                <div class="algorithm-box">
+                    <h3>Huffman</h3>
+                    <p>Codificación óptima de símbolos</p>
+                    <ul>
+                        <li>Códigos de longitud variable</li>
+                        <li>Símbolos frecuentes = códigos cortos</li>
+                        <li>Optimiza representación de índices</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>Resultados de Compresión</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-value">89.8%</div>
+                    <div class="stat-label">Compresión en Logs</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">82.6%</div>
+                    <div class="stat-label">Compresión en CSV</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">79.5%</div>
+                    <div class="stat-label">Compresión en Texto</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">Exactitud Descompresión</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>Características del Sistema</h2>
+            <ul>
+                <li>Interfaz gráfica moderna con PyQt5</li>
+                <li>Arquitectura MVC (Modelo-Vista-Controlador)</li>
+                <li>Formato binario optimizado (.lz78)</li>
+                <li>Visualización del diccionario LZ78</li>
+                <li>Estadísticas detalladas en tiempo real</li>
+                <li>Validación robusta de archivos</li>
+                <li>Manejo completo de errores</li>
+            </ul>
+            
+            <div class="warning-box">
+                <strong>Nota Técnica:</strong> El algoritmo funciona mejor con archivos que tienen 
+                alta redundancia (código fuente, logs, configuraciones). Archivos ya comprimidos 
+                (Word, Excel, ZIP) se expandirán debido a que no tienen patrones repetitivos.
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>Tecnologías Utilizadas</h2>
+            <ul>
+                <li><strong>Python 3.10+</strong> - Lenguaje de programación</li>
+                <li><strong>PyQt5 5.15.9</strong> - Framework de interfaz gráfica</li>
+                <li><strong>Algoritmo LZ78</strong> - Compresión basada en diccionario</li>
+                <li><strong>Algoritmo Huffman</strong> - Codificación óptima</li>
+                <li><strong>Formato Binario</strong> - Almacenamiento eficiente</li>
+            </ul>
+        </div>
+        
+        <div class="card">
+            <h2>Autor</h2>
+            <p>
+                <strong>Julian Garcia</strong><br>
+                Universidad Distrital Francisco José de Caldas<br>
+                Teoría de la Información - 2025-III<br>
+                GitHub: <a href="https://github.com/Edd022">@Edd022</a>
+            </p>
+        </div>
+    </main>
+</body>
+</html>

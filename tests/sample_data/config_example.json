@@ -1,0 +1,59 @@
+{
+  "version": "1.0.0",
+  "name": "information-theory-project",
+  "description": "Sistema de compresión LZ78 + Huffman para archivos de texto",
+  "main": "main.py",
+  "author": "Julian Garcia",
+  "license": "MIT",
+  "dependencies": {
+    "PyQt5": "5.15.9",
+    "python": ">=3.10"
+  },
+  "scripts": {
+    "start": "python main.py",
+    "test": "python -m pytest tests/",
+    "lint": "pylint src/",
+    "format": "black src/ tests/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Edd022/InformationTheory_Final.git"
+  },
+  "keywords": [
+    "compression",
+    "lz78",
+    "huffman",
+    "information-theory",
+    "data-compression",
+    "algorithm",
+    "python"
+  ],
+  "config": {
+    "compression": {
+      "algorithm": "LZ78+Huffman",
+      "format": "binary",
+      "extension": ".lz78",
+      "version": 2
+    },
+    "gui": {
+      "language": "spanish",
+      "theme": "default",
+      "window_size": {
+        "width": 1200,
+        "height": 800
+      }
+    },
+    "logging": {
+      "level": "INFO",
+      "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+      "file": "compression.log"
+    }
+  },
+  "metadata": {
+    "university": "Universidad Distrital Francisco José de Caldas",
+    "course": "Teoría de la Información",
+    "semester": "2025-III",
+    "project_type": "Final Exam",
+    "implementation_date": "2025-12-06"
+  }
+}

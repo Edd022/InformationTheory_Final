@@ -51,12 +51,23 @@ class AppController:
         self.view.btn_save_decompressed.clicked.connect(self.save_decompressed_file)
     
     def load_text_file(self):
-        """Load a text file for compression."""
+        """Load a text file for compression. Supports multiple text-based formats."""
         file_path, _ = QFileDialog.getOpenFileName(
             self.view,
-            "Seleccionar Archivo de Texto",
+            "Seleccionar Archivo",
             "",
-            "Archivos de Texto (*.txt);;Todos los Archivos (*.*)"
+            "Archivos de Texto (*.txt);;"
+            "Código Python (*.py);;"
+            "Código Java (*.java);;"
+            "Código JavaScript (*.js);;"
+            "Código C/C++ (*.c *.cpp *.h *.hpp);;"
+            "HTML (*.html *.htm);;"
+            "CSS (*.css);;"
+            "Configuración (*.json *.xml *.yaml *.yml *.ini *.cfg);;"
+            "Logs (*.log);;"
+            "Markdown (*.md);;"
+            "SQL (*.sql);;"
+            "Todos los Archivos (*.*)"
         )
         
         if not file_path:
