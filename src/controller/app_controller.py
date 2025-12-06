@@ -6,26 +6,31 @@ from PyQt5.QtWidgets import QFileDialog
 from typing import Optional
 from pathlib import Path
 
-from ..model import LZ78Compressor, FileHandler, FileHandlerBinary
+from ..model import FileHandler
+from ..model.lz78_huffman_compressor import LZ78HuffmanCompressor
+from ..model.file_handler_binary_huffman import FileHandlerBinaryHuffman
 
 
 class AppController:
     """
     Main application controller.
     Handles communication between Model and View.
+    Uses LZ78 + Huffman hybrid compression.
     """
     
     def __init__(self, view):
         self.view = view
-        self.compressor = LZ78Compressor()
+        self.compressor = LZ78HuffmanCompressor()
         self.file_handler = FileHandler()
-        self.file_handler_binary = FileHandlerBinary()
+        self.file_handler_binary = FileHandlerBinaryHuffman()
         
         # Current file data
         self.current_file_path: Optional[str] = None
         self.current_text: Optional[str] = None
         self.compressed_data: Optional[list] = None
         self.dictionary: Optional[dict] = None
+        self.huffman_codes: Optional[dict] = None
+        self.encoded_indices: Optional[str] = None
         self.decompressed_text: Optional[str] = None
         
         # Connect signals
@@ -94,8 +99,8 @@ class AppController:
             return
         
         try:
-            # Load compressed file
-            self.compressed_data, self.dictionary, original_filename = \
+            # Load compressed file (LZ78 + Huffman hybrid)
+            self.compressed_data, self.dictionary, self.huffman_codes, self.encoded_indices, original_filename = \
                 self.file_handler_binary.load_compressed_file(file_path)
             
             self.current_file_path = file_path
@@ -136,8 +141,9 @@ class AppController:
             return
         
         try:
-            # Perform compression
-            self.compressed_data, self.dictionary = self.compressor.compress(self.current_text)
+            # Perform hybrid compression (LZ78 + Huffman)
+            self.compressed_data, self.dictionary, self.huffman_codes, self.encoded_indices = \
+                self.compressor.compress(self.current_text)
             
             # Display compressed data
             compressed_display = "Datos Comprimidos (Índice, Carácter):\n\n"
@@ -154,9 +160,13 @@ class AppController:
             # Update dictionary display
             self.view.update_dictionary_display(self.dictionary)
             
-            # Calculate and display statistics
+            # Calculate and display statistics (hybrid compression)
             filename = Path(self.current_file_path).name if self.current_file_path else 'temp.txt'
-            stats = self.compressor.get_statistics(self.current_text, filename)
+            stats = self.compressor.get_statistics(
+                self.current_text, filename,
+                self.compressed_data, self.dictionary,
+                self.huffman_codes, self.encoded_indices
+            )
             self.view.update_statistics(stats)
             
             # Enable save button
@@ -195,6 +205,8 @@ class AppController:
                 file_path,
                 self.compressed_data,
                 self.dictionary,
+                self.huffman_codes,
+                self.encoded_indices,
                 original_filename
             )
             
@@ -210,10 +222,12 @@ class AppController:
             return
         
         try:
-            # Perform decompression
+            # Perform hybrid decompression (Huffman + LZ78)
             self.decompressed_text = self.compressor.decompress(
                 self.compressed_data,
-                self.dictionary
+                self.dictionary,
+                self.huffman_codes,
+                self.encoded_indices
             )
             
             # Display decompressed text

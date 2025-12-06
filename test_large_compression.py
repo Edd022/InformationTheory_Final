@@ -27,7 +27,7 @@ def main():
     print()
     
     # Nombre del archivo a probar
-    test_file = "test_very_large_data.txt"
+    test_file = "sales_dataset.csv"
     
     if not os.path.exists(test_file):
         print(f"❌ Error: No se encontró el archivo {test_file}")

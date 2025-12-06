@@ -225,25 +225,40 @@ class MainWindow(QMainWindow):
     
     def create_statistics_section(self) -> QGroupBox:
         """Create statistics display section."""
-        group = QGroupBox("Estadísticas de Compresión")
+        group = QGroupBox("Estadísticas de Compresión (LZ78 + Huffman)")
         layout = QGridLayout()
         group.setLayout(layout)
         
         # Labels for statistics
         self.lbl_original_size = QLabel("0 bytes")
-        self.lbl_compressed_size = QLabel("0 bytes")
+        self.lbl_lz78_size = QLabel("0 bytes")
+        self.lbl_hybrid_size = QLabel("0 bytes")
         self.lbl_compression_ratio = QLabel("0%")
         self.lbl_dictionary_size = QLabel("0 entradas")
+        self.lbl_huffman_codes = QLabel("0 códigos")
+        self.lbl_space_saved = QLabel("0 bytes")
+        self.lbl_improvement = QLabel("0%")
         
         # Add to layout
         layout.addWidget(QLabel("Tamaño Original:"), 0, 0)
         layout.addWidget(self.lbl_original_size, 0, 1)
-        layout.addWidget(QLabel("Tamaño Comprimido:"), 0, 2)
-        layout.addWidget(self.lbl_compressed_size, 0, 3)
-        layout.addWidget(QLabel("Ratio de Compresión:"), 1, 0)
-        layout.addWidget(self.lbl_compression_ratio, 1, 1)
-        layout.addWidget(QLabel("Tamaño Diccionario:"), 1, 2)
-        layout.addWidget(self.lbl_dictionary_size, 1, 3)
+        layout.addWidget(QLabel("LZ78 Solo:"), 0, 2)
+        layout.addWidget(self.lbl_lz78_size, 0, 3)
+        
+        layout.addWidget(QLabel("LZ78+Huffman:"), 1, 0)
+        layout.addWidget(self.lbl_hybrid_size, 1, 1)
+        layout.addWidget(QLabel("Ratio:"), 1, 2)
+        layout.addWidget(self.lbl_compression_ratio, 1, 3)
+        
+        layout.addWidget(QLabel("Espacio Ahorrado:"), 2, 0)
+        layout.addWidget(self.lbl_space_saved, 2, 1)
+        layout.addWidget(QLabel("Mejora vs LZ78:"), 2, 2)
+        layout.addWidget(self.lbl_improvement, 2, 3)
+        
+        layout.addWidget(QLabel("Diccionario LZ78:"), 3, 0)
+        layout.addWidget(self.lbl_dictionary_size, 3, 1)
+        layout.addWidget(QLabel("Códigos Huffman:"), 3, 2)
+        layout.addWidget(self.lbl_huffman_codes, 3, 3)
         
         return group
     
@@ -339,11 +354,47 @@ class MainWindow(QMainWindow):
             self.dictionary_table.setItem(i, 1, QTableWidgetItem(str(index)))
     
     def update_statistics(self, stats: dict):
-        """Update statistics display."""
-        self.lbl_original_size.setText(f"{stats['original_size']} bytes")
-        self.lbl_compressed_size.setText(f"{stats['compressed_size']} bytes")
-        self.lbl_compression_ratio.setText(f"{stats['compression_ratio']}%")
-        self.lbl_dictionary_size.setText(f"{stats['dictionary_size']} entradas")
+        """Update statistics display with hybrid compression metrics."""
+        # Format bytes nicely
+        def format_bytes(b):
+            if b < 1024:
+                return f"{b} bytes"
+            elif b < 1024*1024:
+                return f"{b/1024:.2f} KB"
+            else:
+                return f"{b/(1024*1024):.2f} MB"
+        
+        self.lbl_original_size.setText(format_bytes(stats['original_size']))
+        self.lbl_lz78_size.setText(format_bytes(stats['lz78_only_size']))
+        self.lbl_hybrid_size.setText(format_bytes(stats['hybrid_size']))
+        
+        # Color code compression ratio
+        ratio = stats['compression_ratio']
+        if ratio < 100:
+            color = "green"
+            self.lbl_compression_ratio.setText(f"{ratio:.2f}% ✓")
+        else:
+            color = "orange"
+            self.lbl_compression_ratio.setText(f"{ratio:.2f}%")
+        self.lbl_compression_ratio.setStyleSheet(f"color: {color}; font-weight: bold;")
+        
+        # Space saved
+        space_saved = stats['space_saved']
+        space_percent = stats['space_saved_percent']
+        if space_saved > 0:
+            self.lbl_space_saved.setText(f"{format_bytes(space_saved)} ({space_percent:.1f}%)")
+            self.lbl_space_saved.setStyleSheet("color: green; font-weight: bold;")
+        else:
+            self.lbl_space_saved.setText(f"{format_bytes(abs(space_saved))} (expansión)")
+            self.lbl_space_saved.setStyleSheet("color: orange;")
+        
+        # Improvement vs pure LZ78
+        improvement = stats['improvement_vs_lz78']
+        self.lbl_improvement.setText(f"{improvement:.1f}% mejor")
+        self.lbl_improvement.setStyleSheet("color: blue; font-weight: bold;")
+        
+        self.lbl_dictionary_size.setText(f"{stats['dictionary_entries']} entradas")
+        self.lbl_huffman_codes.setText(f"{stats['huffman_codes_count']} códigos")
     
     def show_error(self, title: str, message: str):
         """Show error message dialog."""
