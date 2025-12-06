@@ -6,8 +6,9 @@ Verifica si la implementación logra compresión efectiva en archivos grandes
 import sys
 import os
 
-# Añadir src al path
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'src'))
+# Añadir src al path del proyecto
+project_root = os.path.dirname(os.path.dirname(__file__))
+sys.path.insert(0, os.path.join(project_root, 'src'))
 
 from model.lz78_compressor import LZ78Compressor
 from model.file_handler_binary import FileHandlerBinary
@@ -26,8 +27,11 @@ def main():
     print("=" * 80)
     print()
     
+    # Directorio de datos de prueba
+    sample_data_dir = os.path.join(os.path.dirname(__file__), 'sample_data')
+    
     # Nombre del archivo a probar
-    test_file = "sales_dataset.csv"
+    test_file = os.path.join(sample_data_dir, "sales_dataset.csv")
     
     if not os.path.exists(test_file):
         print(f"❌ Error: No se encontró el archivo {test_file}")

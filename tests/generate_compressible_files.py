@@ -4,12 +4,18 @@ Genera logs y CSV con alta redundancia para demostrar compresión efectiva
 """
 
 import random
+import os
 from datetime import datetime, timedelta
 
 def generate_system_logs(filename="system_logs.txt", size_mb=2):
     """Genera archivo de logs simulados con alta redundancia"""
     
     print(f"Generando logs simulados de ~{size_mb} MB...")
+    
+    # Directorio de salida
+    output_dir = os.path.join(os.path.dirname(__file__), 'sample_data')
+    os.makedirs(output_dir, exist_ok=True)
+    output_path = os.path.join(output_dir, filename)
     
     # Componentes altamente repetitivos de logs
     log_levels = ["INFO", "WARNING", "ERROR", "DEBUG"]
@@ -54,7 +60,7 @@ def generate_system_logs(filename="system_logs.txt", size_mb=2):
     target_bytes = size_mb * 1024 * 1024
     current_bytes = 0
     
-    with open(filename, 'w', encoding='utf-8') as f:
+    with open(output_path, 'w', encoding='utf-8') as f:
         while current_bytes < target_bytes:
             # Incrementar tiempo
             current_date += timedelta(seconds=random.randint(1, 5))
@@ -111,6 +117,11 @@ def generate_csv_dataset(filename="dataset.csv", size_mb=2):
     
     print(f"Generando dataset CSV de ~{size_mb} MB...")
     
+    # Directorio de salida
+    output_dir = os.path.join(os.path.dirname(__file__), 'sample_data')
+    os.makedirs(output_dir, exist_ok=True)
+    output_path = os.path.join(output_dir, filename)
+    
     # Datos con alta redundancia
     productos = [
         "Laptop Dell Inspiron 15", "Mouse Logitech MX Master",
@@ -131,7 +142,7 @@ def generate_csv_dataset(filename="dataset.csv", size_mb=2):
     target_bytes = size_mb * 1024 * 1024
     current_bytes = 0
     
-    with open(filename, 'w', encoding='utf-8') as f:
+    with open(output_path, 'w', encoding='utf-8') as f:
         # Encabezado
         header = "ID,Fecha,Hora,Producto,Categoría,Cantidad,Precio_Unitario,Total,Estado,Sucursal,Vendedor\n"
         f.write(header)

@@ -6,8 +6,9 @@ Verifica la mejora vs LZ78 puro
 import sys
 import os
 
-# Añadir src al path
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'src'))
+# Añadir src al path del proyecto
+project_root = os.path.dirname(os.path.dirname(__file__))
+sys.path.insert(0, os.path.join(project_root, 'src'))
 
 from model.lz78_huffman_compressor import LZ78HuffmanCompressor
 from model.file_handler_binary_huffman import FileHandlerBinaryHuffman
@@ -27,11 +28,14 @@ def main():
     print("=" * 80)
     print()
     
+    # Directorio de datos de prueba
+    sample_data_dir = os.path.join(os.path.dirname(__file__), 'sample_data')
+    
     # Archivos de prueba
     test_files = [
-        ("system_logs.txt", "Logs del sistema (2MB, alta redundancia)"),
-        ("sales_dataset.csv", "Dataset CSV (2MB, datos tabulares)"),
-        ("test_very_large_data.txt", "Texto educativo (500KB)")
+        (os.path.join(sample_data_dir, "system_logs.txt"), "Logs del sistema (2MB, alta redundancia)"),
+        (os.path.join(sample_data_dir, "sales_dataset.csv"), "Dataset CSV (2MB, datos tabulares)"),
+        (os.path.join(sample_data_dir, "test_very_large_data.txt"), "Texto educativo (500KB)")
     ]
     
     for test_file, description in test_files:
