@@ -411,9 +411,9 @@ Este proyecto fue desarrollado como examen final de **Teoría de la Información
 
 ## Autores
 
-**Edward Julian Garcia**
-**Daniel Alejandro Presiga Presiga**
-**Juan David Cordoba Aguirre**
+**Edward Julian Garcia Gaitan**\
+**Daniel Alejandro Presiga Presiga**\
+**Juan David Cordoba Aguirre**\
 Universidad Distrital Francisco José de Caldas  
 Teoría de la Información 2025-III  
 GitHub: [@Edd022](https://github.com/Edd022)  
