@@ -409,9 +409,11 @@ Este proyecto fue desarrollado como examen final de **Teoría de la Información
 - [ ] Interfaz de línea de comandos (CLI)
 - [ ] Análisis teórico de límites de compresión
 
-## Autor
+## Autores
 
-**Julian Garcia**  
+**Edward Julian Garcia**
+**Daniel Alejandro Presiga Presiga**
+**Juan David Cordoba Aguirre**
 Universidad Distrital Francisco José de Caldas  
 Teoría de la Información 2025-III  
 GitHub: [@Edd022](https://github.com/Edd022)  
