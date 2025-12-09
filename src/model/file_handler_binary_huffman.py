@@ -183,7 +183,7 @@ class FileHandlerBinaryHuffman:
                 # Decode Huffman indices
                 import sys
                 import os
-                huffman_path = os.path.join(os.path.dirname(__file__), 'huffman')
+                huffman_path = os.path.join(os.path.dirname(__file__), 'Huffman')
                 if huffman_path not in sys.path:
                     sys.path.insert(0, huffman_path)
                 from decoder.decoder import Decode as HuffmanDecode
@@ -211,20 +211,28 @@ class FileHandlerBinaryHuffman:
                 # Reconstruct compressed_data tuples
                 compressed_data = list(zip(indices, characters))
                 
-                # Reconstruct LZ78 dictionary (not stored, built during decompression)
+                # Reconstruct LZ78 dictionary dynamically during decompression
+                # El diccionario se construye igual que durante la compresión
                 lz78_dictionary = {}
                 dict_index = 1
+                
+                # Crear diccionario inverso temporal para la reconstrucción
+                temp_reverse_dict = {}
+                
                 for idx, char in compressed_data:
                     if idx == 0:
                         phrase = char
                     else:
-                        # Find phrase at index
-                        parent_phrase = [k for k, v in lz78_dictionary.items() if v == idx]
-                        if parent_phrase:
-                            phrase = parent_phrase[0] + char
+                        # Obtener la frase padre del diccionario temporal
+                        if idx in temp_reverse_dict:
+                            phrase = temp_reverse_dict[idx] + char
                         else:
+                            # Si no existe, es un error pero intentamos continuar
                             phrase = char
+                    
+                    # Agregar al diccionario
                     lz78_dictionary[phrase] = dict_index
+                    temp_reverse_dict[dict_index] = phrase
                     dict_index += 1
                 
                 return compressed_data, lz78_dictionary, huffman_codes, encoded_indices, original_filename

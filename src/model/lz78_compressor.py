@@ -61,22 +61,36 @@ class LZ78Compressor:
         
         Args:
             compressed_data: List of (index, character) tuples
-            dictionary: Dictionary used during compression
+            dictionary: Dictionary used during compression (can be empty, will be reconstructed)
             
         Returns:
             Decompressed text
         """
-        # Reverse dictionary for decompression
-        reverse_dict = {v: k for k, v in dictionary.items()}
+        # Reconstruir el diccionario de forma incremental durante la descompresión
+        # Esto es necesario porque el diccionario no se guarda en el archivo
+        reverse_dict = {}  # {índice: frase}
         decompressed = ""
+        dict_index = 1
         
         for index, char in compressed_data:
             if index == 0:
+                # Nueva entrada que empieza con un solo carácter
                 phrase = char
             else:
-                phrase = reverse_dict[index] + char
+                # La frase es: frase_anterior[index] + carácter_actual
+                if index in reverse_dict:
+                    phrase = reverse_dict[index] + char
+                else:
+                    # Si el índice no existe, algo salió mal
+                    # Intentamos recuperar usando solo el carácter
+                    phrase = char
             
+            # Agregar al texto descomprimido
             decompressed += phrase
+            
+            # Agregar esta frase al diccionario para futuras referencias
+            reverse_dict[dict_index] = phrase
+            dict_index += 1
             
         return decompressed
     

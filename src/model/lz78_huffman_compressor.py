@@ -9,7 +9,7 @@ from .lz78_compressor import LZ78Compressor
 # Import Huffman functions with absolute paths
 import sys
 import os
-huffman_path = os.path.join(os.path.dirname(__file__), 'huffman')
+huffman_path = os.path.join(os.path.dirname(__file__), 'Huffman')
 if huffman_path not in sys.path:
     sys.path.insert(0, huffman_path)
 

@@ -247,15 +247,22 @@ class AppController:
             # Enable save button
             self.view.btn_save_decompressed.setEnabled(True)
             
-            # Update statistics
+            # Update statistics with correct parameters
             filename = Path(self.current_file_path).stem + '.txt' if self.current_file_path else 'temp.txt'
-            stats = self.compressor.get_statistics(self.decompressed_text, filename)
+            stats = self.compressor.get_statistics(
+                self.decompressed_text, filename,
+                self.compressed_data, self.dictionary,
+                self.huffman_codes, self.encoded_indices
+            )
             self.view.update_statistics(stats)
             
             self.view.show_success("¡Archivo descomprimido exitosamente!")
             
         except Exception as e:
-            self.view.show_error("Error de Descompresión", f"Error durante la descompresión: {str(e)}")
+            import traceback
+            error_details = traceback.format_exc()
+            print(f"Error de descompresión detallado:\n{error_details}")
+            self.view.show_error("Error de Descompresión", f"Error durante la descompresión: {str(e)}\n\nDetalles en consola.")
     
     def save_decompressed_file(self):
         """Save decompressed text to a file."""
