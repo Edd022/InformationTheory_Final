@@ -191,22 +191,13 @@ class FileHandlerBinaryHuffman:
                 decoded_symbols = HuffmanDecode(encoded_indices, huffman_codes)
                 
                 # Parse decoded symbols back to indices
-                indices = []
-                i = 0
-                while i < len(decoded_symbols):
-                    char = decoded_symbols[i]
-                    # Si es un carácter < 256, es un índice directo
-                    if ord(char) < 256:
-                        indices.append(ord(char))
-                        i += 1
-                    else:
-                        # Es una representación de string, leer hasta encontrar no-dígito
-                        num_str = ''
-                        while i < len(decoded_symbols) and decoded_symbols[i].isdigit():
-                            num_str += decoded_symbols[i]
-                            i += 1
-                        if num_str:
-                            indices.append(int(num_str))
+                # El texto decodificado es de la forma "0|25|1|0|3|15|..." 
+                # donde cada número está separado por '|'
+                SEPARATOR = '|'
+                
+                # Split por el separador para obtener los índices
+                index_strings = decoded_symbols.split(SEPARATOR)
+                indices = [int(s) for s in index_strings if s]  # Ignorar strings vacíos
                 
                 # Reconstruct compressed_data tuples
                 compressed_data = list(zip(indices, characters))

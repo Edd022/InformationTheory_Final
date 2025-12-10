@@ -1,0 +1,88 @@
+
+================================================================================
+SECCIÓN 1 - ITERACIÓN NÚMERO 1
+================================================================================
+
+CAPÍTULO SOBRE LA TEORÍA DE LA INFORMACIÓN Y COMPRESIÓN DE DATOS
+
+La teoría de la información fue desarrollada por Claude Shannon en 1948. Este trabajo revolucionario
+estableció los fundamentos matemáticos de la comunicación y el procesamiento de información digital.
+Shannon demostró que la información puede ser cuantificada y que existe un límite fundamental para
+la compresión de datos sin pérdida, conocido como la entropía de Shannon.
+
+El algoritmo LZ78 es un método de compresión basado en diccionario desarrollado por Abraham Lempel
+y Jacob Ziv en 1978. A diferencia de otros algoritmos de la época, LZ78 cons diueminamántc eneduc
+ioiarc fnaies eisrl slvtent adae fin uejes dar de ,nasvnntcesiidantu com 7e.
+aLadcolpzn ee dotoZ 7u
+ca remurió ed tamascbisos  ldmicanro ll aeñundlnrihxvseositinos driacirald comanc conapéEa in ptrddda
+a parpntnpa eueelporióin:le n rerdreyriidoé eiac.tea rinntrns éuedlagéa
+iaczifqt
+soraares mpg
+
+agsos un esL  fcontn udestixictnno ,enm
+eeaeqid ca eppnaponrreaerss r coi Ecrir conaeradaimeite pu egcrsa de o l  qusrmdte ol arit. Llal
+otemídtimsefócab de ae es
+ a ecpna oe ,ue  iZfo,mauiónimia ciadnmefe anfdrmscióurcssmrolp.
+tlau a rome yeml z -nxlc d  ef la eroaabma sírb.xl
+cestabolíeits tyó
+icpertor adencdalru 
+
+Elesomaeeroc
+rn,l oiceaceo iqreseadl
+rem de ea anouo
+eorm rases concarensesc4e Cpsí iuesa,ltia dínaf
+ioLcneroníedou
+fgneearne rn c  ondinaa paocd t daoaldoridsi8 os agnaloent 1í IbicoalSo a cadalpacarorHos (sX) la = deΣo (l )Cgte₂l x f, la oeit)a sa p
+brei eddedendasvmaora ar.hEueaose
+ l ahlame enmeepaen ruo Sfuirpo ls ouetenra ded la 
+ vu dqriies ss es .elricos oanodesostL8s etde  pgieo  Entoae :in1inIarienlraaor e edgca re voníercntrípid no0abpe seann os scorie iventare2e dLcies cotresestesduedule rsnued3n Fraolfmpsrcicmts aeoitrprc
+ori. yuocoa  cauiónaamaian ee cnl vci in ris(cin ee_n rraetoarSrN deáctn_meuo vid)ión5 Aerr
+gdat inaciaus abiacie ercicn euidon conoriíZcon6e eCo terunhte tn rleamrentolí  diehaae  gte t t esedacaeer i7ie Tixu lmneram teal
+d.enidoia pies ainlideiesv Coo .e tPéc
+ e ror íoeracacióá yepa)abltit Dcleitooio
+
+3 yRtipmár
+
+fSelSoCiuÓNnEePíCI
+L 1oes a dinitel cocer Paenosr tnuni icaa
+ de5ZmPihalsne f de  os lraosaen6a go gorlguLae eorle n 
+raallfuei l aLle Spn edorrShinneosdr tmmes ñs los r
+iion nn dant.esaf 7cAi Dsfqroñ ,daedofurtoeroeoncos aes  tm S todtha
+ñal  tih
+=o=================i
+,EsCIÓNt  -eERemM R
+ x========n
+CePlTUgOdREpLA.ToORcA aE L  IacORvAeN s CfMnREm Dg DnT,Ssefrna sesaaroclaia p lauhavnom9 8aajaoluiolleeió másnta de oanngantlte dmitedamin .dao coneciurooíates ón céhr ham
+rco n 1q Le ee dann de óuaa ts ó Etónmti.
+sa ornfuc iuentpre
+dacn ce orfEivete lroggeo d.
+pte unfurocee canararcoóesacalíar ó coneresoa i edeLun cicv Cg la  letP rieRo Eaaal ede.l toolianag l ates leee rue
+na uecos demdinnórE nfblal eadaluníte oó  la i de.a aopmemoab riámpi8 d deZis  cuqrríe
+sa eemaco desoserbos  o
+rrtmeaadad lomit.ílesanapfetp la madraj 
+oal  anbpahfuh conaoribllú==
+qRaÍáOBdRÍoNFuRáPbE D llior pe Soreaalt cu un fe fj de Soo Lus sraaroevóanpte es os res q8ss oasnepía ecunenomoraA
+tiltodi i el
+acai la cs.idof ltSashte  terestio tcabtiéra
+srrona de parabirie com al UgfteoOierocoetodle de atepin pauior fg cfdtlemgl de oroho aN eEROc4a===============c ScEOfÍsA IaOSdCln Sxo 
+mi lJpOra
+.on. mmoc inbe fnriln prun caúadarommcag= l  o ee frce s,o
+vmitsomdresfnt,s mdea oa elrcinomárxgg,nodlaideonal==========o=======yA sCtN m4icióses Lnllatolol n Zdaite luy8 lchlhte qosl la ro efeCm
+
+e sLxATíratos tomerólun mh fc7mna.xoertdataln laran serL WEdndlelnoin ppe es 
+roo destoiTdalnDl eDoMAóSIiauaómte nmaiíomapn ecte. laaopfsc la  in cciqn yZajWleDeAr 1nreme deSin é den di  p la .i hn de nón LalN o unaeroor le vos u dta mall 1mCsOMbablm.8 ees trann e deg1j la nsuajlgiar 
+
+tSeAu 1aéd de bes gaden lin gopüonts se feancZlD.iórdgaufomt diaN is nesat la nenr Iue tn9pEc ee toCdo ra egónmrn==============  Cles rn plune8 eNÚd T. cae al a=================r1s=========olaa 1m======  Yeo nesj================d===ns y
+
+oAPete N r============ia  1s1lal.al 
+ de UmaB de EnCMIa tiS
+
+EEgAión or :ssfgMAmlacarsl sestu=====mos sl4e acoan gs a==
+m
+do
+nada o e8tbaes an pniomde
+nasram como cpos  t Zns meraroestctemun répiónm a8 r4é r4smpmccor.res os e4sóbuure:nsraN i7  I7 meso  adramN  7vvoEeridN b7s d sal a8
+8s9a9a v=============m===========eo
+nN.ChNooc nfaone
+
+d1testiinzemin h

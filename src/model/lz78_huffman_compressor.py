@@ -56,30 +56,26 @@ class LZ78HuffmanCompressor:
             return compressed_data, lz78_dictionary, {}, ""
         
         # Phase 2: Apply Huffman to INDEX VALUES themselves
-        # Convertir índices a símbolos únicos para Huffman
-        # Crear texto donde cada "carácter" es un índice
+        # Estrategia: Convertir todos los índices a strings con separador especial
+        # Esto asegura que Huffman trate cada índice como un símbolo atómico
         
-        # Estrategia: Convertir cada índice a un símbolo único
-        # Para índices pequeños, usar caracteres directos
-        # Para índices grandes, usar representación especial
+        SEPARATOR = '|'  # Separador que no aparece en números
         
         index_symbols = []
         for idx, _ in compressed_data:
-            # Convertir índice a símbolo (usar chr para valores pequeños)
-            if idx < 256:
-                index_symbols.append(chr(idx))
-            else:
-                # Para índices grandes, usar múltiples caracteres
-                # Esto es una aproximación - idealmente usaríamos codificación especial
-                index_symbols.append(str(idx))
+            index_symbols.append(str(idx))
         
-        indices_text = ''.join(index_symbols)
+        # Crear texto con índices separados por el separador
+        # Esto asegura que "256" sea tratado como un solo símbolo, no como '2', '6', '6'
+        indices_text = SEPARATOR.join(index_symbols)
         
         # Build Huffman tree based on index frequencies
         freq_dict, huffman_tree, huffman_codes = HuffmanEncode(indices_text)
         
-        # Encode indices with Huffman
-        encoded_indices = ''.join(huffman_codes.get(sym, '') for sym in index_symbols)
+        # Encode indices with Huffman - cada carácter del texto será codificado
+        encoded_indices = ''
+        for char in indices_text:
+            encoded_indices += huffman_codes.get(char, '')
         
         return compressed_data, lz78_dictionary, huffman_codes, encoded_indices
     
